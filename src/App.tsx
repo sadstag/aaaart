@@ -3,8 +3,10 @@ import viteLogo from "/vite.svg";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import type { Models } from "appwrite";
-import { account, ID, client } from "./lib/appwrite";
+import { account, client, ID } from "./lib/appwrite";
 
+// TO be removed later
+// the component handling the main index route is 'Index'
 function App() {
 	const [loggedInUser, setLoggedInUser] =
 		useState<Models.User<Models.Preferences> | null>(null);
