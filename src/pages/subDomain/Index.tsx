@@ -1,10 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { getDefinedSiteId } from "@/siteId";
-import { wrapWithSiteLayout } from "./Layout";
 
 const artworkdIds = ["a1", "a2"];
 
-function IndexPage() {
+export function IndexPage() {
 	return (
 		<div>
 			<p>Site Index for "{getDefinedSiteId()}"</p>
@@ -30,5 +29,3 @@ function IndexPage() {
 		</div>
 	);
 }
-
-export default wrapWithSiteLayout(IndexPage);

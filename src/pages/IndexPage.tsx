@@ -1,6 +1,6 @@
 import { getSiteId } from "@/siteId";
-import BaseDomainIndexPage from "./baseDomain/IndexPage";
-import SubdomainIndexPage from "./subDomain/Index";
+import { IndexPage as BaseDomainIndexPage } from "./baseDomain/IndexPage";
+import { IndexPage as SubdomainIndexPage } from "./subDomain/Index";
 
 export function IndexPage() {
 	const RealIndexPage =

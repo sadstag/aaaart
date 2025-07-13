@@ -9,122 +9,179 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as AdminRouteImport } from './routes/admin'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AIdRouteImport } from './routes/a.$id'
+import { Route as LayoutRouteImport } from './routes/_layout'
+import { Route as Admin_layoutRouteImport } from './routes/_admin_layout'
+import { Route as LayoutIndexRouteImport } from './routes/_layout.index'
+import { Route as LayoutContactRouteImport } from './routes/_layout.contact'
+import { Route as LayoutAboutRouteImport } from './routes/_layout.about'
+import { Route as Admin_layoutAdminRouteImport } from './routes/_admin_layout.admin'
+import { Route as LayoutAIdRouteImport } from './routes/_layout.a.$id'
 
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
+const LayoutRoute = LayoutRouteImport.update({
+  id: '/_layout',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
+const Admin_layoutRoute = Admin_layoutRouteImport.update({
+  id: '/_admin_layout',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IndexRoute = IndexRouteImport.update({
+const LayoutIndexRoute = LayoutIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LayoutRoute,
 } as any)
-const AIdRoute = AIdRouteImport.update({
+const LayoutContactRoute = LayoutContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutAboutRoute = LayoutAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const Admin_layoutAdminRoute = Admin_layoutAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => Admin_layoutRoute,
+} as any)
+const LayoutAIdRoute = LayoutAIdRouteImport.update({
   id: '/a/$id',
   path: '/a/$id',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LayoutRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
-  '/contact': typeof ContactRoute
-  '/a/$id': typeof AIdRoute
+  '/admin': typeof Admin_layoutAdminRoute
+  '/about': typeof LayoutAboutRoute
+  '/contact': typeof LayoutContactRoute
+  '/': typeof LayoutIndexRoute
+  '/a/$id': typeof LayoutAIdRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
-  '/contact': typeof ContactRoute
-  '/a/$id': typeof AIdRoute
+  '/admin': typeof Admin_layoutAdminRoute
+  '/about': typeof LayoutAboutRoute
+  '/contact': typeof LayoutContactRoute
+  '/': typeof LayoutIndexRoute
+  '/a/$id': typeof LayoutAIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
-  '/contact': typeof ContactRoute
-  '/a/$id': typeof AIdRoute
+  '/_admin_layout': typeof Admin_layoutRouteWithChildren
+  '/_layout': typeof LayoutRouteWithChildren
+  '/_admin_layout/admin': typeof Admin_layoutAdminRoute
+  '/_layout/about': typeof LayoutAboutRoute
+  '/_layout/contact': typeof LayoutContactRoute
+  '/_layout/': typeof LayoutIndexRoute
+  '/_layout/a/$id': typeof LayoutAIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/admin' | '/contact' | '/a/$id'
+  fullPaths: '/admin' | '/about' | '/contact' | '/' | '/a/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/admin' | '/contact' | '/a/$id'
-  id: '__root__' | '/' | '/about' | '/admin' | '/contact' | '/a/$id'
+  to: '/admin' | '/about' | '/contact' | '/' | '/a/$id'
+  id:
+    | '__root__'
+    | '/_admin_layout'
+    | '/_layout'
+    | '/_admin_layout/admin'
+    | '/_layout/about'
+    | '/_layout/contact'
+    | '/_layout/'
+    | '/_layout/a/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
-  AdminRoute: typeof AdminRoute
-  ContactRoute: typeof ContactRoute
-  AIdRoute: typeof AIdRoute
+  Admin_layoutRoute: typeof Admin_layoutRouteWithChildren
+  LayoutRoute: typeof LayoutRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
+    '/_layout': {
+      id: '/_layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof LayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
+    '/_admin_layout': {
+      id: '/_admin_layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof Admin_layoutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/': {
-      id: '/'
+    '/_layout/': {
+      id: '/_layout/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof LayoutIndexRouteImport
+      parentRoute: typeof LayoutRoute
     }
-    '/a/$id': {
-      id: '/a/$id'
+    '/_layout/contact': {
+      id: '/_layout/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof LayoutContactRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/about': {
+      id: '/_layout/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof LayoutAboutRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_admin_layout/admin': {
+      id: '/_admin_layout/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof Admin_layoutAdminRouteImport
+      parentRoute: typeof Admin_layoutRoute
+    }
+    '/_layout/a/$id': {
+      id: '/_layout/a/$id'
       path: '/a/$id'
       fullPath: '/a/$id'
-      preLoaderRoute: typeof AIdRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof LayoutAIdRouteImport
+      parentRoute: typeof LayoutRoute
     }
   }
 }
 
+interface Admin_layoutRouteChildren {
+  Admin_layoutAdminRoute: typeof Admin_layoutAdminRoute
+}
+
+const Admin_layoutRouteChildren: Admin_layoutRouteChildren = {
+  Admin_layoutAdminRoute: Admin_layoutAdminRoute,
+}
+
+const Admin_layoutRouteWithChildren = Admin_layoutRoute._addFileChildren(
+  Admin_layoutRouteChildren,
+)
+
+interface LayoutRouteChildren {
+  LayoutAboutRoute: typeof LayoutAboutRoute
+  LayoutContactRoute: typeof LayoutContactRoute
+  LayoutIndexRoute: typeof LayoutIndexRoute
+  LayoutAIdRoute: typeof LayoutAIdRoute
+}
+
+const LayoutRouteChildren: LayoutRouteChildren = {
+  LayoutAboutRoute: LayoutAboutRoute,
+  LayoutContactRoute: LayoutContactRoute,
+  LayoutIndexRoute: LayoutIndexRoute,
+  LayoutAIdRoute: LayoutAIdRoute,
+}
+
+const LayoutRouteWithChildren =
+  LayoutRoute._addFileChildren(LayoutRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
-  AdminRoute: AdminRoute,
-  ContactRoute: ContactRoute,
-  AIdRoute: AIdRoute,
+  Admin_layoutRoute: Admin_layoutRouteWithChildren,
+  LayoutRoute: LayoutRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,12 +1,14 @@
 import { Outlet } from "@tanstack/react-router";
 
-export function Layout() {
+export function AdminLayout() {
 	return (
 		<div>
-			Subdomain Layout
+			Subdomain Admin Layout
 			<br />
 			contents:
-			<Outlet />
+			<div>
+				<Outlet />
+			</div>
 		</div>
 	);
 }

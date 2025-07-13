@@ -1,13 +1,12 @@
 import { Link, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
-import { wrapWithMainLayout } from "./Layout";
 
 const siteIds = ["e", "z", "rp", "ln"] as const;
 
 const urlForSiteId = (siteId: (typeof siteIds)[number]) =>
 	`http://${siteId}.${import.meta.env.VITE_DOMAIN_NAME}${import.meta.env.DEV ? ":3000" : ""}`;
 
-function IndexPage() {
+export function IndexPage() {
 	return (
 		<div>
 			<p>Nosite Index</p>
@@ -28,5 +27,3 @@ function IndexPage() {
 		</div>
 	);
 }
-
-export default wrapWithMainLayout(IndexPage);

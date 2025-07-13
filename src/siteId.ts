@@ -1,3 +1,4 @@
+import { notFound } from "@tanstack/react-router";
 import { type Brand, make } from "ts-brand";
 
 export type SiteId = Brand<string, "SiteId">;
@@ -7,6 +8,15 @@ const siteId = findSiteId();
 
 export function getSiteId(): SiteId | undefined {
 	return siteId;
+}
+
+/**
+ * To be used in a route that is only valid for subdomains, in the beforeLoad function
+ */
+export function ensureSiteIdForRoute() {
+	if (typeof getSiteId() === "undefined") {
+		throw notFound();
+	}
 }
 
 /**

@@ -8,9 +8,4 @@ export const Route = createRootRoute({
 			<Outlet />
 		</>
 	),
-	// looks like there is a bug, the notFoundComponent is not called
-	// when notFound() is thrown from beforeLoad
-	// notFoundComponent: () => {
-	// 	return <p>Page was not found</p>;
-	// },
 });

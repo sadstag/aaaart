@@ -1,6 +1,6 @@
 import { getSiteId } from "@/siteId";
-import BaseDomainAdminPage from "./baseDomain/AdminPage";
-import SubdomainAdminPage from "./subDomain/AdminPage";
+import { AdminPage as BaseDomainAdminPage } from "./baseDomain/AdminPage";
+import { AdminPage as SubdomainAdminPage } from "./subDomain/AdminPage";
 
 export function AdminPage() {
 	const RealIndexPage =

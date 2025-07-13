@@ -2,11 +2,12 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
+import { PageNotfound } from "./pages/PageNotFound";
 import { routeTree } from "./routeTree.gen";
 
 const router = createRouter({
 	routeTree,
-	defaultNotFoundComponent: () => <div>404</div>,
+	defaultNotFoundComponent: PageNotfound,
 });
 
 declare module "@tanstack/react-router" {

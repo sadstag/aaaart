@@ -1,25 +1,14 @@
-import type { FC, JSX, ReactNode } from "react";
+import { Outlet } from "@tanstack/react-router";
 
-type Props = {
-	children: ReactNode;
-};
-
-const Layout = ({ children }: Props) => {
+export function Layout() {
 	return (
 		<div>
-			Main Layout
+			Base domain Layout
 			<br />
 			contents:
-			<div>{children}</div>
+			<div>
+				<Outlet />
+			</div>
 		</div>
-	);
-};
-export function wrapWithMainLayout<P extends JSX.IntrinsicAttributes>(
-	C: FC<P>,
-) {
-	return (props: P) => (
-		<Layout>
-			<C {...props} />
-		</Layout>
 	);
 }

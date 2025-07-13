@@ -1,8 +1,7 @@
-import { Route } from "@/routes/a.$id";
+import { Route } from "@/routes/_layout.a.$id";
 import { getDefinedSiteId } from "@/siteId";
-import { wrapWithSiteLayout } from "./Layout";
 
-function ArtworkPage() {
+export function ArtworkPage() {
 	const { id: artworkId } = Route.useParams();
 	return (
 		<div>
@@ -10,5 +9,3 @@ function ArtworkPage() {
 		</div>
 	);
 }
-
-export default wrapWithSiteLayout(ArtworkPage);
